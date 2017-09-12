@@ -3,4 +3,5 @@ Jinwoo Cho/2014875422/computer engineering/24/031987654321
 Junyung Park/2014365477/computer engineering/23/031112233445
 Suho Lee/2013887452/computer engineering/24/010887799990
 Mijee Park/2015669988/computer engineering/22/010445566778
-
+Hello/2010000000/40/computer/010000000001
+Heysung Lee/2010547825/20/computer/012345678901

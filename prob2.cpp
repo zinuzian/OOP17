@@ -3,15 +3,23 @@
 #include <iostream>
 #include <cstdlib>
 
-SIManager::SIManager(string filename)
+int compare(const void * a, const void * b)
+{
+	return (*(Student*)a).getName().compare((*(Student*)b).getName());
+}
+
+SIManager::SIManager(string dir)
 {
 	fstream f;
+	filename = dir;
 	string str;
 	f.open(filename);
 	if (f.is_open()) {
 		size = 0;
 		list = new Student[100];
 		while (getline(f, str)) {
+			if (str.length() == 0)
+				continue;
 			if (size == 99){
 				cout << "array is full, please erase old data" << endl;
 				continue;
@@ -40,20 +48,51 @@ SIManager::SIManager(string filename)
 			list[size] = *tmp;
 			size++;
 		}
-
+		f.close();
+		qsort(list, size, sizeof(Student), compare);
 	}
 }
 
-bool SIManager::insert(Student *s)
+
+
+bool SIManager::insert()
 {
+	string n, sid, d, a, t;
 	if (size == 99){
 		cout << "array is full, please erase old data" << endl;
+		return false;
 	}
+	cout << "- Insertion -" << endl;
+	cout << "Name ?  ";
+	fflush(stdin);
+	getline(cin, n,'\n');
+	cout << "Student ID ?  ";
+	cin >> sid;
+	if (sid.length() != 10){
+		cout << "rewrite sid";
+		return false;
+	}
+	cout << "Age ?  ";
+	cin >> d;
+	cout << "Department ?  ";
+	fflush(stdin);
+	getline(cin, d, '\n');
+	cout << "Tel ?  ";
+	cin >> t;
 
+	Student* tmp = new Student(n, sid, d, a, t);
+	list[size] = *tmp;
+	size++;
+
+	ofstream f;
+	f.open(filename,ios::app);
+	f << (n + "/" + sid + "/" + d + "/" + a + "/" + t+"\n");
+	f.close();
+	qsort(list, size, sizeof(Student), compare);
 	return true;
 }
 
-Student* SIManager::search(int menu)
+Student* SIManager::search()
 {
 	return nullptr;
 }
@@ -83,24 +122,42 @@ int SIManager::showMenu(){
 	return menu;
 }
 
+void SIManager::printList(Student* res, int n){
+
+}
+
+int SIManager::getSize(){
+	return size;
+}
+
 int main(int argc, char* argv[]) {
 
 	SIManager sims(argv[1]);
 	bool con = true;
+	Student* result;
 	while (con){
 		int m = sims.showMenu();
+		string sid;
 		switch (m){
-		case 1:
-			insert()
+		case 1:	//insertrion
+			if (!sims.insert()){
+				cout << "error in insertion. Retry\n";
+			}
 			break;
-		case 2:
-
+		case 2:	//search
+			result = sims.search();
+			if (result == nullptr)
+				cout << "there's no such element\n";
+			else{
+				sims.printList(result,sims.getSize());
+			}
 			break;
-		case 3:
-
+		case 3:	//deletion
+			cin >> sid;
+			sims.erase(sid);
 			break;
-		case 4:
-			cout << "\n\n Good Bye..." << endl;
+		case 4:	//exit
+			cout << "\n\n Good Bye..." << endl << endl << endl;
 			con = false;
 			break;
 		}

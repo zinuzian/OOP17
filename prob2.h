@@ -23,10 +23,13 @@ public:
 class SIManager {
 	Student* list;
 	int size;
+	string filename;
 public:
-	SIManager(string filename);
-	bool insert(Student *s);
-	Student* search(int menu);
+	SIManager(string dir);
+	bool insert();
+	Student* search();
 	bool erase(string sid);
 	int showMenu();
+	void printList(Student* res, int n);
+	int getSize();
 };
