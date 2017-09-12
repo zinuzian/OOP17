@@ -1,7 +1,7 @@
 #pragma once
-#include <iostream>
+
 #include <string>
-#include <fstream>
+
 using namespace std;
 
 class Student {
@@ -22,9 +22,11 @@ public:
 
 class SIManager {
 	Student* list;
+	int size;
 public:
 	SIManager(string filename);
 	bool insert(Student *s);
 	Student* search(int menu);
-	bool erase(long sid);
+	bool erase(string sid);
+	int showMenu();
 };
