@@ -62,6 +62,7 @@ bool SIManager::insert()
 		cout << "array is full, please erase old data" << endl;
 		return false;
 	}
+	system("cls");
 	cout << "- Insertion -" << endl;
 	cout << "Name ?  ";
 	fflush(stdin);
@@ -94,6 +95,36 @@ bool SIManager::insert()
 
 Student* SIManager::search()
 {
+	int m;
+	system("cls");
+	cout << "- Search -" << endl;
+	cout << "1. Search by name" << endl;
+	cout << "2. Search by student ID (10 numbers)" << endl;
+	cout << "3. Search by department name" << endl;
+	cout << "4. Search by Age" << endl;
+	cout << "5. List All\n> " << endl;
+	cin >> m;
+	string input;
+	switch (m){
+	case 1:
+		cout << "Name keyword? ";
+		getline(cin, input, '\n');
+		
+
+		break;
+	case 2:
+
+		break;
+	case 3:
+
+		break;
+	case 4:
+
+		break;
+	case 5:
+
+		break;
+	}
 	return nullptr;
 }
 
@@ -106,6 +137,7 @@ bool SIManager::erase(string sid)
 int SIManager::showMenu(){
 	int menu;
 	while (1){
+		system("cls");
 		cout << "1. Insertion" << endl;
 		cout << "2. Search" << endl;
 		cout << "3. Deletion" << endl;
