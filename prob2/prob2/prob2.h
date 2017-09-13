@@ -1,7 +1,7 @@
 #pragma once
-#include <iostream>
+
 #include <string>
-#include <fstream>
+
 using namespace std;
 
 class Student {
@@ -18,13 +18,19 @@ public:
 	string getDept();
 	string getAge();
 	string getTel();
+	string(Student::*getter[5])(void);
 };
 
 class SIManager {
 	Student* list;
+	int size;
+	string filename;
 public:
-	SIManager(string filename);
-	int insert(Student s);
-	Student* search(int menu);
-	int erase(long sid);
+	SIManager(string dir);
+	bool insert();
+	Student* search();
+	bool erase(string sid);
+	int showMenu();
+	int getSize();
+	void printList(string input, int m);
 };
