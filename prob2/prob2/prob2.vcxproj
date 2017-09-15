@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\prob2.cpp" />
-    <ClCompile Include="..\..\student.cpp" />
+    <ClCompile Include="prob2.cpp" />
+    <ClCompile Include="student.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\prob2.h" />
+    <ClInclude Include="prob2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{825700A0-B8E5-423D-873F-D4EED1F5BD34}</ProjectGuid>
