@@ -1,6 +1,7 @@
 #include "prob2.h"
 
 
+
 string Student::getName()
 {
 	return name;
@@ -24,6 +25,17 @@ string Student::getAge()
 string Student::getTel()
 {
 	return tel;
+}
+
+void Student::printMe(){
+	for (int i = 0; i < 5; i++){
+		cout << (this->*getter[i])();
+		if (i == 4)
+			cout << endl;
+		else
+			cout << "\t";
+	}
+	//cout << tmp.getName() << "\t" << tmp.getSid() << "\t" << tmp.getDept() << "\t" << tmp.getAge() << "\t" << tmp.getTel() << endl;
 }
 
 Student::Student(string n, string sid, string d, string a, string t)

@@ -1,6 +1,5 @@
 #include "prob2.h"
 #include <fstream>
-#include <iostream>
 #include <cstdlib>
 
 int compare(const void * a, const void * b)
@@ -92,7 +91,7 @@ bool SIManager::insert()
 	return true;
 }
 
-Student* SIManager::search()
+void SIManager::search()
 {
 	int m;
 	system("cls");
@@ -106,12 +105,12 @@ Student* SIManager::search()
 	cin >> m;
 	switch (m){
 	case 5:
-		cout << "Name\t\tStudent ID\tDept\t\tAge\tTel" << endl;
+		cout << "Name\t\tStudent ID\tDepartment\t\tAge\tTel" << endl;
 		for (int i = 0; i < size; i++){
-			cout << list[i].getName() << "\t" << list[i].getSid() << "\t" << list[i].getDept() << "\t" << list[i].getAge() << "\t" << list[i].getTel() << endl;
+			list[i].printMe();
 		}
 		system("pause");
-		return nullptr;
+		return;
 	case 1:
 		cout << "\nName keyword? ";
 		break;
@@ -129,27 +128,76 @@ Student* SIManager::search()
 	string input;
 	getline(cin, input, '\n');
 	printList(input, m);
+	return;
+}
+
+Student* SIManager::match(string input,int m){
+	for (int i = 0; i < size; i++){
+		Student tmp = list[i];
+		func f = tmp.getter[m-1];
+		string res = ((&tmp)->*f)();
+		if (res.find(input) != string::npos){	//list is sorted already
+			//tmp.printMe();
+
+			return list + i;
+		}
+	}
 	return nullptr;
 }
 
 void SIManager::printList(string input, int m){
-	typedef string(Student::*func)();
-	cout << "Name\t\tStudent ID\tDept\t\tAge\tTel" << endl;
+	
+	cout << "Name\t\tStudent ID\tDepartment\t\tAge\tTel" << endl;
 	for (int i = 0; i < size; i++){
-		Student tmp = list[i];
-		func f = tmp.getter[m-1];
-		if (((&tmp)->*f)().find(input)!=input.size()){	//list is sorted already
-			cout << tmp.getName() << "\t" << tmp.getSid() << "\t" << tmp.getDept() << "\t" << tmp.getAge() << "\t" << tmp.getTel() << endl;
-		}
+		Student* tmp = match(input, m);
+		tmp->printMe();
 	}
 	system("pause");
 }
 
 bool SIManager::erase(string sid)
 {
+	Student* tmp = match(sid, 2); //sid match
+	if (tmp == nullptr){
+		return false;
+	}
+	int idx = (tmp - list) / sizeof(Student);
+	for (int i = idx; i < size; i++){
+		list[i] = list[i + 1];
+	}
+	size--;
 
-	return 0;
+	if (saveList() == false){
+		cout << "Save Failed" << endl;
+		system("pause");
+	}
+
+	return true;
 }
+
+
+bool SIManager::saveList(){
+	ofstream f;
+	f.open(filename);
+	if (f.is_open()){
+		for (int i = 0; i < size; i++){
+			Student* tmp = list + i;
+			for (int j = 0; j < 5; j++){
+				func fn = tmp->getter[j];
+				string output = (tmp->*fn)();
+				f << output;
+				if (j == 4)
+					f << "\n";
+				else
+					f << "\t";
+			}
+		}
+		f.close();
+		return true;
+	}
+	return false;
+}
+
 
 int SIManager::showMenu(){
 	int menu;
@@ -171,18 +219,14 @@ int SIManager::showMenu(){
 	return menu;
 }
 
-int SIManager::getSize(){
-	return size;
-}
-
 int main(int argc, char* argv[]) {
 
 	SIManager sims(argv[1]);
 	bool con = true;
-	Student* result;
 	while (con){
 		int m = sims.showMenu();
 		string sid;
+		bool res = false;
 		switch (m){
 		case 1:	//insertrion
 			if (!sims.insert()){
@@ -190,13 +234,17 @@ int main(int argc, char* argv[]) {
 			}
 			break;
 		case 2:	//search
-			result = sims.search();
-			if (result == nullptr)
-				cout << "there's no such element\n";
+			sims.search();
 			break;
 		case 3:	//deletion
+			cout << "- Deletion -" << endl;
+			cout << "Student ID to delete : ";
 			cin >> sid;
-			sims.erase(sid);
+			res = sims.erase(sid);
+			if (res == false){
+				cout << "No such student" << endl;
+				system("pause");
+			}
 			break;
 		case 4:	//exit
 			cout << "\n\n Good Bye..." << endl << endl << endl;

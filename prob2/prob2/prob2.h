@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -19,6 +19,7 @@ public:
 	string getAge();
 	string getTel();
 	string(Student::*getter[5])(void);
+	void printMe();
 };
 
 class SIManager {
@@ -26,11 +27,13 @@ class SIManager {
 	int size;
 	string filename;
 public:
+	typedef string(Student::*func)();
 	SIManager(string dir);
 	bool insert();
-	Student* search();
+	void search();
 	bool erase(string sid);
 	int showMenu();
-	int getSize();
+	Student* match(string input, int m);
 	void printList(string input, int m);
+	bool saveList();
 };
