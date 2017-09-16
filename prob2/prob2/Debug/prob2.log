@@ -1,14 +1,16 @@
-﻿빌드 시작: 2017-09-15 오후 6:21:20
-     1>2 노드의 "C:\Users\caucse\Source\Repos\OOP17\prob2\prob2\prob2.vcxproj" 프로젝트(Build 대상)입니다.
+﻿빌드 시작: 2017-09-17 오전 3:04:48
+     1>2 노드의 "C:\Users\진우\Source\Repos\OOP17\prob2\prob2\prob2.vcxproj" 프로젝트(Build 대상)입니다.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt prob2.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt prob2.cpp student.cpp
+         student.cpp
          prob2.cpp
+         코드를 생성하고 있습니다...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\caucse\Source\Repos\OOP17\prob2\Debug\prob2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\caucse\Source\Repos\OOP17\prob2\Debug\prob2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\caucse\Source\Repos\OOP17\prob2\Debug\prob2.lib" /MACHINE:X86 Debug\prob2.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\진우\Source\Repos\OOP17\prob2\Debug\prob2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\진우\Source\Repos\OOP17\prob2\Debug\prob2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\진우\Source\Repos\OOP17\prob2\Debug\prob2.lib" /MACHINE:X86 Debug\prob2.obj
          Debug\student.obj
-         prob2.vcxproj -> C:\Users\caucse\Source\Repos\OOP17\prob2\Debug\prob2.exe
-     1>"C:\Users\caucse\Source\Repos\OOP17\prob2\prob2\prob2.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+         prob2.vcxproj -> C:\Users\진우\Source\Repos\OOP17\prob2\Debug\prob2.exe
+     1>"C:\Users\진우\Source\Repos\OOP17\prob2\prob2\prob2.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:00.52
+경과 시간: 00:00:01.10

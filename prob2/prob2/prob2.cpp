@@ -13,9 +13,9 @@ SIManager::SIManager(string dir)
 	filename = dir;
 	string str;
 	f.open(filename);
+	list = new Student[100];
 	if (f.is_open()) {
 		size = 0;
-		list = new Student[100];
 		while (getline(f, str)) {
 			if (str.length() == 0)
 				continue;
@@ -51,6 +51,11 @@ SIManager::SIManager(string dir)
 		qsort(list, size, sizeof(Student), compare);
 		
 	}
+	else{
+		FILE* fp;
+		fopen_s(&fp, "test1.txt", "w");
+		fclose(fp);
+	}
 }
 
 bool SIManager::insert()
@@ -72,7 +77,7 @@ bool SIManager::insert()
 		return false;
 	}
 	cout << "Age ?  ";
-	cin >> d;
+	cin >> a;
 	cout << "Department ?  ";
 	fflush(stdin);
 	getline(cin, d, '\n');
@@ -80,13 +85,13 @@ bool SIManager::insert()
 	cin >> t;
 
 	Student* tmp = new Student(n, sid, d, a, t);
-	list[size] = *tmp;
+	list[size] = *tmp; //err
 	size++;
 
-	ofstream f;
-	f.open(filename,ios::app);
-	f << (n + "/" + sid + "/" + d + "/" + a + "/" + t+"\n");
-	f.close();
+	if (saveList() == false){
+		cout << "Save Failed" << endl;
+		fflush(stdin);getchar();
+	}
 	qsort(list, size, sizeof(Student), compare);
 	return true;
 }
@@ -109,7 +114,7 @@ void SIManager::search()
 		for (int i = 0; i < size; i++){
 			list[i].printMe();
 		}
-		system("pause");
+		fflush(stdin);getchar();
 		return;
 	case 1:
 		cout << "\nName keyword? ";
@@ -132,7 +137,7 @@ void SIManager::search()
 }
 
 Student* SIManager::match(string input,int m){
-	for (int i = 0; i < size; i++){
+	for (int i = 0; list[i].getName().compare("none"); i++){
 		Student tmp = list[i];
 		func f = tmp.getter[m-1];
 		string res = ((&tmp)->*f)();
@@ -148,11 +153,14 @@ Student* SIManager::match(string input,int m){
 void SIManager::printList(string input, int m){
 	
 	cout << "Name\t\tStudent ID\tDepartment\t\tAge\tTel" << endl;
-	for (int i = 0; i < size; i++){
-		Student* tmp = match(input, m);
+	Student* tlist = list;
+	Student* tmp;
+	for (int i = 0; (tmp = match(input, m)) != nullptr; i++){
+		list = tmp + 1;
 		tmp->printMe();
 	}
-	system("pause");
+	list = tlist;
+	fflush(stdin);getchar();
 }
 
 bool SIManager::erase(string sid)
@@ -161,17 +169,18 @@ bool SIManager::erase(string sid)
 	if (tmp == nullptr){
 		return false;
 	}
+	string d_name = tmp->getName();
 	int idx = (tmp - list) / sizeof(Student);
 	for (int i = idx; i < size; i++){
 		list[i] = list[i + 1];
 	}
 	size--;
-
 	if (saveList() == false){
 		cout << "Save Failed" << endl;
-		system("pause");
+		fflush(stdin);getchar();
 	}
-
+	cout << d_name << " is deleted" << endl;
+	fflush(stdin);getchar();
 	return true;
 }
 
@@ -189,7 +198,7 @@ bool SIManager::saveList(){
 				if (j == 4)
 					f << "\n";
 				else
-					f << "\t";
+					f << "/";
 			}
 		}
 		f.close();
@@ -221,6 +230,7 @@ int SIManager::showMenu(){
 
 int main(int argc, char* argv[]) {
 
+
 	SIManager sims(argv[1]);
 	bool con = true;
 	while (con){
@@ -243,7 +253,7 @@ int main(int argc, char* argv[]) {
 			res = sims.erase(sid);
 			if (res == false){
 				cout << "No such student" << endl;
-				system("pause");
+				fflush(stdin);getchar();
 			}
 			break;
 		case 4:	//exit
@@ -252,7 +262,7 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
-
+	
 
 
 

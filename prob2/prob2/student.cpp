@@ -29,13 +29,10 @@ string Student::getTel()
 
 void Student::printMe(){
 	for (int i = 0; i < 5; i++){
-		cout << (this->*getter[i])();
-		if (i == 4)
-			cout << endl;
-		else
-			cout << "\t";
+		cout.width(widths[i]);
+		cout << left << (this->*getter[i])();
 	}
-	//cout << tmp.getName() << "\t" << tmp.getSid() << "\t" << tmp.getDept() << "\t" << tmp.getAge() << "\t" << tmp.getTel() << endl;
+	cout << endl;
 }
 
 Student::Student(string n, string sid, string d, string a, string t)
@@ -51,10 +48,14 @@ Student::Student(string n, string sid, string d, string a, string t)
 	getter[3] = &Student::getAge;
 	getter[4] = &Student::getTel;
 
-
+	widths[0] = 16;
+	widths[1] = 16;
+	widths[2] = 24;
+	widths[3] = 8;
+	widths[4] = 13;
 }
 Student::Student() {
-
+	name = "none";
 }
 
 
