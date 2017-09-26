@@ -1,14 +1,12 @@
-Daniel Jeon/1740948824/Dept. of management/25/773359981826
+Hyesung Lee/7618927954/electrical engineering/21/898414398808
+Hyunjae Lee/1542097372/Dept. of management/22/295200391819
+Hyunjun Joo/3598407636/computer engineering/22/924618211976
 Jinwoo Cho/5517115276/computer engineering/25/603801250947
 Jinwoo Jeon/1423221685/electrical engineering/24/835120164061
-Hyesung Lee/7618927954/electrical engineering/21/898414398808
-Tieree Henry/3123341138/digital imaging/25/778383710734
-Mijee Park/7427793198/machanical engineering/25/965109968348
-Suho Lee/6502860248/Dept. of management/25/499255333743
 Juno Oh/6509006138/machanical engineering/23/808806819897
 Junyung Park/9344606618/computer engineering/25/228289078158
+Mijee Park/7427793198/machanical engineering/25/965109968348
+Suho Lee/6502860248/Dept. of management/25/499255333743
 Sungjae Kim/4963788291/digital imaging/20/612425862653
-Hyunjun Joo/3598407636/computer engineering/22/924618211976
-Hyunjae Lee/1542097372/Dept. of management/22/295200391819
-Gabriel Santos/6016575412/machanical engineering/21/532525867722
+Tieree Henry/3123341138/digital imaging/25/778383710734
 Yoona Kim/0014607177/digital imaging/23/941969825549

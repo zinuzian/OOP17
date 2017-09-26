@@ -2,6 +2,8 @@
 #include <fstream>
 #include <cstdlib>
 
+#define NOS 300
+
 int compare(const void * a, const void * b)
 {
 	return (*(Student*)a).getName().compare((*(Student*)b).getName());
@@ -13,13 +15,13 @@ SIManager::SIManager(string dir)
 	filename = dir;
 	string str;
 	f.open(filename);
-	list = new Student[100];
+	list = new Student[NOS];
 	if (f.is_open()) {
 		size = 0;
 		while (getline(f, str)) {
 			if (str.length() == 0)
 				continue;
-			if (size == 99){
+			if (size == NOS-1){
 				cout << "array is full, please erase old data" << endl;
 				continue;
 			}
@@ -52,16 +54,19 @@ SIManager::SIManager(string dir)
 		
 	}
 	else{
-		FILE* fp;
+		/*FILE* fp;
 		fopen_s(&fp, "test1.txt", "w");
-		fclose(fp);
+		fclose(fp);*/
+		ofstream of;
+		of.open(filename);
+		of.close();
 	}
 }
 
 bool SIManager::insert()
 {
 	string n, sid, d, a, t;
-	if (size == 99){
+	if (size == NOS-1){
 		cout << "array is full, please erase old data" << endl;
 		return false;
 	}
@@ -73,7 +78,8 @@ bool SIManager::insert()
 	cout << "Student ID ?  ";
 	cin >> sid;
 	if (sid.length() != 10){
-		cout << "rewrite sid";
+		cout << "check student id";
+		fflush(stdin); getchar();
 		return false;
 	}
 	cout << "Age ?  ";
@@ -132,6 +138,11 @@ void SIManager::search()
 	fflush(stdin);
 	string input;
 	getline(cin, input, '\n');
+	if (m == 2 && input.size()!=10){
+		cout << "Student ID must consist of 10 digits.";
+		fflush(stdin); getchar();
+		return;
+	}
 	printList(input, m);
 	return;
 }
@@ -170,7 +181,7 @@ bool SIManager::erase(string sid)
 		return false;
 	}
 	string d_name = tmp->getName();
-	int idx = (tmp - list) / sizeof(Student);
+	int idx = (tmp - list) ;
 	for (int i = idx; i < size; i++){
 		list[i] = list[i + 1];
 	}
@@ -250,6 +261,11 @@ int main(int argc, char* argv[]) {
 			cout << "- Deletion -" << endl;
 			cout << "Student ID to delete : ";
 			cin >> sid;
+			if (sid.size() != 10){
+				cout << "Student ID must consist of 10 digits.";
+				fflush(stdin); getchar();
+				break;
+			}
 			res = sims.erase(sid);
 			if (res == false){
 				cout << "No such student" << endl;
