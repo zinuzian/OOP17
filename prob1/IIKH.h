@@ -6,20 +6,29 @@
 using namespace std;
 
 class IIKH{
-	DBManager DB;
+	/*
+	 This class exists 
+	*/
 	Greeter g;
-	PlanManager pm;
 
 public:
-	DBManager getDB();
-	PlanManager getPM();
+	
 };
 
 class Greeter{
-	PlanManager pm;
+	/*
+	 This class greets user.
 
+	*/
+	PlanManager pm;
+	DBManager DB;
 public:
 	PlanManager getPM();	//to communicate with PlanManager
+	DBManager getDB();	//to communicate with DB
+	void printMenu();	//print main menu. browsing, adding/editing recipe, making/reviewing meal plan are provided.
+	void browseRecipe();
+	void addR();
+	vpod 
 };
 
 
@@ -29,6 +38,7 @@ class PlanManager{
 public:
 	PlanManager(string pm_filename); //load stored informations from file
 	Date getDate();	//get certain Date
+	void diplay();	//
 };
 
 class Date{
